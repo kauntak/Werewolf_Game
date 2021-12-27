@@ -1,0 +1,20 @@
+<body>
+    <form>
+      <input type="text" id="m" />
+      <input type="submit" id="submitButton" value="submit" />
+    </form>
+    <ul id="messages"></ul>
+  </body>
+  <script src="/socket.io/socket.io.js"></script>
+ <script>
+    let userName = prompt("whats your name");
+    let roomName = prompt("room name");
+    let ID = "";
+    var socket = io();
+    socket.emit("Join Room", {userName:userName, roomName: roomName});
+    
+    socket.on("Send Data", data => {
+        ID = data.id;
+        
+    });
+</script>

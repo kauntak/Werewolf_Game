@@ -1,0 +1,37 @@
+{
+  "name": "werewolf_game",
+  "version": "0.0.1",
+  "description": "An online multiplayer werewolf game!",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kauntak/Werewolf_Game.git"
+  },
+  "keywords": [
+    "werewolf",
+    "social",
+    "deduction",
+    "online",
+    "murder",
+    "mystery",
+    "game",
+    "multiplayer",
+    "node"
+  ],
+  "author": "Nozomu Koshirae",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kauntak/Werewolf_Game/issues"
+  },
+  "homepage": "https://github.com/kauntak/Werewolf_Game#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http": "0.0.1-security",
+    "ngrok": "^4.2.2",
+    "nodemon": "^2.0.15",
+    "socket.io": "^4.4.0"
+  }
+}
