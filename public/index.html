@@ -1,20 +1,239 @@
-<body>
-    <form>
-      <input type="text" id="m" />
-      <input type="submit" id="submitButton" value="submit" />
-    </form>
-    <ul id="messages"></ul>
-  </body>
-  <script src="/socket.io/socket.io.js"></script>
- <script>
-    let userName = prompt("whats your name");
-    let roomName = prompt("room name");
-    let ID = "";
-    var socket = io();
-    socket.emit("Join Room", {userName:userName, roomName: roomName});
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>人狼 - Jinrou - Werewolf</title> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="./css/main.css" />
+		<link rel="stylesheet" type="text/css" href="./css/index.css" />
+    <link href='http://fonts.googleapis.com/css?family=Electrolize' rel='stylesheet' type='text/css' />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet"> 
+    <script src="https://kit.fontawesome.com/01ab91f8f4.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="language-menu">
+      <div class="selected-language en-list" id="selected-language">English</div>
+      <ul>
+        <li><a href="#" class="en-list" onclick="selectLang(event, 'en')">English</a></li>
+        <li><a href="#" class="ja-list" onclick="selectLang(event, 'ja')">日本語</a></li>
+      </ul>
+    </div>
     
-    socket.on("Send Data", data => {
-        ID = data.id;
-        
-    });
-</script>
+    
+    <div id="welcome" class="panel">
+      <div class="language en">
+        <h3>Welcome to the werewolf game!</h3>
+        <p>Deep in the woods, in a little village, an evil witch has released a curse that will turn anyone who comes into contact with it into a werewolf.</p>
+        <p>At night the werewolf will feel a deep hunger for the blood of the people closest to them, which will not wane until one person has been eaten.</p>
+        <p>Every night one villager has been eaten. Fed up and scared the villagers decide to start hanging the most suspicious among them each day, until they had gotten rid of the werewolf....</p>
+        <form action="submit" class="welcome-form" id="welcome-form-en">
+          <label for="username">What's  your name?</label>
+          <input type="text" name="username" required>
+          <br/>
+          <input type="submit" value="Let's go!" class="welcome-button">
+        </form>
+      </div>
+      <div class="language ja">
+        <h3>人狼ゲームへようこそ！！</h3>
+        <p>森の奥深く、小さな村で、邪悪な魔女が呪いを解き放ちました。</p>
+        <p>呪われた村人は夜になると、親しんでいる人の血を欲し、食い殺さなければ死んでしまう体になってしまいました。</p>
+        <p>毎晩毎晩村人が一人ずつ食い殺されて、村人たちは決意しました。</p>
+        <p>人狼を捕まえるまで毎日最も怪しい人を処刑する事を。。。</p>
+        <form action="submit" class="welcome-form" id="welcome-form-ja">
+          <label for="username">お名前はなんですか？?</label>
+          <input type="text" name="username" required>
+          <br/>
+          <input type="submit" value="ゲームへゴー!" class="welcome-button">
+        </form>
+      </div>
+    </div>
+    
+    <div id="room" class="panel">
+      <div class="language en room-content">
+          <div class="tab">
+            <button class="tablinks active select-room-tab-button" onclick="openSelectOrCreateRoom(event, 'select-room')">Select Room</button>
+            <button class="tablinks create-room-tab-button" onclick="openSelectOrCreateRoom(event, 'create-room')">Create Room</button>
+          </div>
+          <div class="select-room">
+            <h3>Please select a room to join!</h3>
+            <form action="submit" id="room-selection-form-en">
+              <div class="room-list-content" id="room-list-content-en">
+                  <!-- Dynamically create radio buttons here   -->
+              </div>
+              <div class="room-password">
+                <label for="room-password-en">Password:</label>
+                <input type="text" name="room-password-en" id="room-password-en">
+              </div>
+              <input type="submit" value="Join room!" id="select-room-en" disabled>
+            </form>
+          </div>
+          <div class="create-room">
+            <h3>Create a new room!</h3>
+            <form action="submit" id="room-creation-form-en" class="room-creation-form">
+              <div class="create-room-content">
+                <label for="new-room-name-en">Room name:</label>   
+                <input type="text" name="new-room-name-en" id="new-room-name-en" required>
+              </div>
+              <div class="create-room-content">
+                <label for="require-password-en">Turn on password?</label>
+                <div class="switch">
+                  <input type="checkbox" name="require-password" id="require-password-en" class="require-password-checkbox" onchange="togglePassword(event)"><label for="require-password-en" class="require-password-label" />Toggle</label>
+                </div>
+              </div>
+              <div class="password create-room-content">
+                <label for="new-room-password-en">Password:</label>
+                <input type="text" name="new-room-password-en" id="new-room-password-en">
+              </div>
+              <input class="create-room-button" type="submit" value="Create room!">
+            </form>
+          </div>
+      </div>
+      <div class="language ja room-content">
+        <div class="tab">
+          <button class="tablinks active select-room-tab-button" onclick="openSelectOrCreateRoom(event, 'select-room')">部屋に入る</button>
+          <button class="tablinks create-room-tab-button" onclick="openSelectOrCreateRoom(event, 'create-room')">部屋を作る</button>
+        </div>
+        <div class="select-room">
+          <h3>接続する部屋を選んでください!</h3>
+          <form action="submit" id="room-selection-form-ja">
+            <div class="room-list-content" id="room-list-content-ja">
+                <!-- Dynamically create radio buttons here   -->
+            </div>
+            <div class="room-password">
+              <label for="room-password-ja">合言葉:</label>
+              <input type="text" name="room-password-ja" id="room-password-ja">
+            </div>
+            <input type="submit" value="部屋に入る!" id="select-room-ja" disabled>
+          </form>
+        </div>
+        <div class="create-room">
+          <h3>新しい部屋を作ろう!</h3>
+          <form action="submit" id="room-creation-form-ja" class="room-creation-form">
+            <div class="create-room-content">
+              <label for="new-room-name-ja">部屋名:</label>   
+              <input type="text" id="new-room-name-ja" name="new-room-name-ja" required>
+            </div>
+            <div class="create-room-content">
+              <label for="require-password-ja">合言葉を ON?</label>
+              <div class="switch">
+                <input type="checkbox" name="require-password-ja" id="require-password-ja" class="require-password-checkbox" onchange="togglePassword(event)"><label for="require-password-ja" class="require-password-label" />Toggle</label>
+              </div>
+            </div>
+            <div class="password create-room-content">
+              <label for="new-room-password-ja">合言葉:</label>
+              <input type="text" id="new-room-password-ja" name="new-room-password-ja">
+            </div>
+            <input class="create-room-button" type="submit" value="部屋を作る!">
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="chat-box">
+      <div id="chat-box-modal">
+        <div id="chat-box-content">
+          <span id="chat-box-close">&times;</span>
+          <ul id="messages">
+          </ul>
+          <div class="message-send-form">
+            <textarea name="message-text" id="message-text" placeholder="Message" row="1"></textarea>
+            <button type="button" id="message-send" onclick="sendMessage()">
+              <img src="./images/send-message-icon.png" alt="send button"/>
+            </button>
+          </div>
+        </div>
+      </div>
+      <button id="chat-button" onclick="openChat()">
+        <img src="./images/chatIcon.png" alt="Chat Icon" id="chat-icon">
+      </button>
+    </div>
+    <div class="modal" id="leave-lobby-modal">
+      <div class="modal-content">
+        <p class="language en">Do you really want to leave?</p>
+        <p class="language ja" style="display:none;">本当に部屋を出ますか？</p>
+        <button type="button" onclick="leaveLobby()" class="leave-ok-button"><i class="fas fa-check"></i></button><button onclick="cancelLeaveLobby()"><i class="fas fa-times"></i></button>
+      </div>
+    </div>
+    <div id="game-lobby" class="panel">
+      <button class="leave" type="button" onclick="leaveLobbyQuestion()">
+        <span class="leave-span-1">&lt;</span><span class="leave-span-2">&lt;</span><span class="leave-span-3">&lt;</span>
+      </button>
+      <div class="game-left">
+        <div class="language en">
+          <div class="current-players">
+            <h5># of players:</h5><h5 id="number-of-players-en">0</h5>
+          </div>
+          <button type="button" class="start-button" id="start-button-en" onclick="startGame()">Start!</button>
+        </div>
+        <div class="language ja">
+          <div class="current-players">
+            <h5>村人:</h5><h5 id="number-of-players-ja">0</h5>
+          </div>
+          <button type="button" class="start-button" id="start-button-ja" onclick="startGame()">始める!</button>
+        </div>
+      </div>
+      <div class="game-left houses" id="house-list">
+        <div class="house" id="house1" style="position: absolute;left: 0;top: 5vh;">
+          <span class="house-window"></span><span class="house-window-side"></span><img src="./images/house.png" alt="villager house" class="house-image">
+        </div>
+        <div class="house" style="position: absolute;left: 13vw;top: 0;display: none;" id="house6">
+          <span class="house-window"></span><span class="house-window-side"></span><img src="./images/house.png" alt="villager house" class="house-image">
+        </div>
+        <div class="house" style="position: absolute;left: -10vw;top: 25vh;display: none;" id="house5">
+          <span class="house-window"></span><span class="house-window-side"></span><img src="./images/house.png" alt="villager house" class="house-image">
+        </div>
+        <div class="house" style="position: absolute;left: -5vw;top: 50vh;" id="house2">
+          <span class="house-window"></span><span class="house-window-side"></span><img src="./images/house.png" alt="villager house" class="house-image">
+        </div>
+        <div class="house" style="position: absolute;right: 5vw;top: 50vh;" id="house3">
+          <span class="house-window"></span><span class="house-window-side"></span><img src="./images/house.png" alt="villager house" class="house-image">
+        </div>
+        <div class="house" style="position: absolute;right: 0vw;top: 30vh;display: none;" id="house7">
+          <span class="house-window"></span><span class="house-window-side"></span><img src="./images/house.png" alt="villager house" class="house-image">
+        </div>
+        <div class="house" style="position: absolute;right: 5vw;top: 13vh;" id="house4">
+          <span class="house-window"></span><span class="house-window-side"></span><img src="./images/house.png" alt="villager house" class="house-image">
+        </div>
+        <div class="house" id="house8" style="position: absolute;right: 19vw;top: 61vh;display: none;">
+          <span class="house-window"></span><span class="house-window-side"></span><img src="./images/house.png" alt="villager house" class="house-image">
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal">
+      <div class="modal-content">
+        <p>Do you really want to leave?</p>
+        <button onclick="leaveGame()" class="leave-ok-button">Yes</button><button onclick="cancelLeaveGame()">No</button>
+      </div>
+    </div>
+    <div id="game" class="panel">
+      <div id ="game-content" class="game-left">
+        <!-- <button class="leave" type="button" onclick="leaveGameQuestion()">
+          <span class="leave-span-1">&lt;</span><span class="leave-span-2">&lt;</span><span class="leave-span-3">&lt;</span>
+        </button> -->
+        <div class="role-image" id="role-image">
+          <img src="./images/werewolf.png" alt="werewolf card">
+        </div>
+        <p id="count-down">0:10</p>
+        <div class="language en">
+            <div class="role-content">
+                <div class="vote-content">
+                    <h5 id="vote-title">Vote Title</h5>
+                    <form id="vote-form">
+                      <div class="vote-options-container">
+
+                      </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <script type="text/javascript" src="./scripts/index.js"></script>
+  </body>
+</html>

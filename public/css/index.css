@@ -1,0 +1,687 @@
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}
+body {
+    width: 100%;
+    min-width: 320px;
+    background: #0f2027; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+        to right,
+        #2c5364,
+        #203a43,
+        #0f2027
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+        to right,
+        #2c5364,
+        #203a43,
+        #0f2027
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    overflow: scroll;
+}
+.language-menu {
+    z-index: 30;
+    width: 100px;
+    text-align: right;
+    margin-top: 25px;
+    position: fixed;
+    right: 1vw;
+}
+.language-menu ul {
+    display: block;
+    overflow: hidden;
+    max-height: 0px;
+    margin: 0;
+    padding: 0;
+    color: #2c5364;
+    background-color: #fff;
+    border: 1px solid #2c5364;
+    position: absolute;
+    top: 30px;
+    right: 0px;
+    width: 110px;
+    border-radius: 5px;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+    right: 0px;
+    transition: all 0.25s ease;
+}
+.language-menu ul li {
+    list-style: none;
+    text-align: right;
+    display: flex;
+    justify-content: space-between;
+}
+.language-menu ul li a {
+    width: 125px;
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+}
+.language-menu ul li a:visited {
+    color: #2c5364;
+}
+.language-menu ul li a::before {
+    content: "";
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+    margin-right: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.language-menu ul li:hover {
+    background-color: darkgrey;
+}
+.language-menu:hover ul {
+    display: block;
+    max-height: 20vh;
+}
+
+.selected-language {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    line-height: 2;
+}
+.selected-language::before {
+    content: "";
+    display: inline-block;
+    width: 32px;
+    height: 24px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding-right: 12px;
+}
+
+.en-list::before {
+    background-image: url(https://flagcdn.com/32x24/ca.png);
+}
+
+.ja-list::before {
+    background-image: url(https://flagcdn.com/32x24/jp.png);
+}
+
+.ja {
+    display: none;
+    font-family: DotGothic16;
+}
+h3 {
+    font-size: 30px;
+    padding: 15px;
+}
+h5 {
+    font-size: 20px;
+    padding: 15px;
+}
+.back-button {
+    z-index: 9;
+    position: fixed;
+}
+
+.panel {
+    min-width: 100%;
+    height: 98%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    position: absolute;
+    background: #0f2027; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+        to right,
+        #243b55,
+        #141e30,
+        #0f2027
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+        to right,
+        #2c5364,
+        #203a43,
+        #0f2027
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.6);
+    -webkit-transition: all 0.8s ease-in-out;
+    -moz-transition: all 0.8s ease-in-out;
+    -o-transition: all 0.8s ease-in-out;
+    transition: all 0.8s ease-in-out;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome-form {
+    padding: 20px;
+}
+
+.welcome-button {
+    margin: 10px;
+    width: 100%;
+    max-width: 340px;
+}
+#welcome {
+    z-index: 15;
+}
+
+#room {
+    z-index: 10;
+}
+
+.room-list-content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 150px;
+    overflow-y: scroll;
+    width: 100%;
+    background: #333644;
+    padding: 4px;
+    border-radius: 3px;
+    box-shadow: inset 0 0 0 3px rgba(35, 33, 45, 0.3),
+        0 0 0 3px rgba(185, 185, 185, 0.3);
+    position: relative;
+}
+.radio-roomName {
+    margin-bottom: 5px;
+    width: auto;
+    height: fit-content;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 4px 8px;
+    background: #454857;
+    color: #bdbdbdbd;
+    font-size: 14px;
+    transition: all 100ms linear;
+}
+.room-content {
+    position: fixed;
+    top: 28%;
+    left: auto;
+    right: auto;
+    justify-content: center;
+}
+.tab {
+    overflow: hidden;
+    justify-content: center;
+}
+.tab button {
+    background-color: rgba(50, 100, 110, 0.7);
+    color: white;
+    font-family: "Electrolize";
+    font-size: 30px;
+    float: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+.tab button:hover {
+    background-color: #292e49;
+}
+.tab button.active {
+    background-color: #11213f;
+}
+.select-room {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-height: 50vh;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+.radio-roomName:checked {
+    background: #536976; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+        to right,
+        #292e49,
+        #536976
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+        to right,
+        #292e49,
+        #536976
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #fff;
+    box-shadow: 0 1px 1px #0000002e;
+    text-shadow: 0 1px 0px #79485f7a;
+}
+
+.radio-roomName:before {
+    content: attr(label);
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+.room-password {
+    padding: 10px;
+    width: 100%;
+}
+.room-password input {
+    margin-left: 10px;
+}
+
+.create-room {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+.room-creation-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.password {
+    display: block;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+}
+.create-room-content {
+    margin-top: 10px;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+}
+.require-password-checkbox {
+    display: none;
+    transition: display 0.25s ease;
+}
+.require-password-label {
+    display: block;
+    width: 48px;
+    height: 24px;
+    text-indent: -150%;
+    clip: rect(0 0 0 0);
+    color: transparent;
+    user-select: none;
+    position: relative;
+}
+.require-password-label::before,
+.require-password-label::after {
+    content: "";
+    display: block;
+    position: absolute;
+    cursor: pointer;
+}
+.require-password-label::before {
+    width: 100%;
+    height: 100%;
+    background-color: #dedede;
+    border-radius: 9999em;
+    -webkit-transition: background-color 0.25s ease;
+    transition: background-color 0.25s ease;
+}
+.require-password-label::after {
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.45);
+    -webkit-transition: left 0.25s ease;
+    transition: left 0.25s ease;
+}
+.require-password-checkbox:checked + .require-password-label::before {
+    background-color: #366483;
+}
+.require-password-checkbox:checked + .require-password-label::after {
+    left: 24px;
+}
+.create-room-button {
+    margin-top: 10px;
+    width: 200px;
+}
+#game-lobby {
+    z-index: 5;
+}
+.game-left{
+    z-index:8;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 58vw;
+    height: 88vh;
+    padding-top: auto;
+    padding-bottom: auto;
+}
+.current-players{
+    padding-top: 40vh;
+}
+.houses{
+    filter: blur(2px);
+    z-index: 6;
+}
+.house{
+    display: inline-block;
+    transform: scale(75%);
+    width: fit-content;
+}
+.house-image{
+    max-width: 450px;
+    width: 16vw;
+    height: auto;
+    z-index: 8;
+    position:relative;
+}
+.house-window{
+    display: inline-block;
+    z-index: 5;
+    position: relative;
+    background-color: rgb(31, 21, 17);
+    width: 7vw;
+    height: 5vw;
+    transform: skewY(-35deg) translate(310%, 215%);
+}
+.house-window-side{
+    display: inline-block;
+    z-index: 5;
+    position: relative;
+    background-color: rgb(31, 21, 17);
+    width: 7vw;
+    height: 5vw;
+    transform: skewY(20deg)  translate(115%, -115%);
+}
+#game {
+    z-index: 0;
+}
+#chat-box {
+    z-index: 9;
+}
+#chat-box-modal{
+    background: none;
+}
+#chat-button {
+    z-index: 7;
+    background: #fff;
+    border-radius: 50%;
+    height: 15vw;
+    width: 15vw;
+    min-width: 50px;
+    max-width: 70px;
+    min-height: 50px;
+    max-height: 70px;
+    display: none;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    vertical-align: center;
+    position: fixed;
+    right: 3vw;
+    bottom: 3vw;
+}
+#chat-icon {
+    margin: auto;
+    min-width: 40px;
+    max-width: 50px;
+    width: 10vw;
+    height: auto;
+    object-fit: scale-down;
+}
+#chat-box-content {
+    background: rgb(32,45,71);
+    background: linear-gradient(27deg, rgba(32,45,71,1) 0%, rgba(90,132,175,1) 64%, rgba(69,119,129,1) 100%); 
+    z-index: 9;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 55px;
+    right: 5px;
+    width: 40vw;
+    height: 88vh;
+    border-radius: 8px;
+}
+#chat-box-close {
+    display: none;
+    color: rgb(100, 100, 100);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+#chat-box-close:hover,
+#chat-box-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+#messages{
+    background-color: #243b55;
+    width: auto;
+    height:85vh;
+    border-color: #0f2027;
+    position: relative;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.othersDiv{
+    margin: 5px;
+    width: 60%;
+    float: left;
+}
+.myDiv{
+    width: 60%;
+    margin-left: auto;
+    margin-right: 5px;
+    text-align: right;
+}
+.myDiv .message-content{
+    margin-left: auto;
+    margin-right: 0px;
+    background: rgb(38, 51, 63); 
+}
+.message-sender{
+    font-size: 14px;
+    color: #bbb;
+}
+.message-content{
+    font-size: 17px;
+    background: rgb(81, 114, 136);
+    max-width: 100%;
+    width: fit-content;
+    height: fit-content;
+    margin: 2px 0px 2px 0px;
+    padding: 5px 10px 5px 5px;
+    border-radius: 8px;
+}
+.message-time{
+    font-size: 10px;
+    color: #aaaaaa;
+}
+.message-send-form{
+    padding: 0;
+    margin-top: -10px;
+}
+#message-send{
+    background: transparent;
+    border: none;
+    max-width: 5%;
+    max-height: 20px;
+    margin-right: 10px;
+}
+#message-send img{
+    height: auto;
+    width: auto;
+}
+#message-text{
+    width: 80%;
+    height: 30px;
+    padding: 5px 0px 5px 5px;
+    margin: 5px 0px 5px 5px;
+}
+.system-message{
+    text-align: center;
+}
+
+.leave{
+    cursor: pointer;
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    font-weight: bold;
+    background:transparent;
+    border: none;
+    
+    z-index: 8;
+}
+.leave span{
+    font-size: 20px;
+    color: whitesmoke;
+    position: relative;
+    left:5px;
+}
+.leave-span-1{
+    transition: left 0.5s ease-in 0s, color 0.5s ease-out 0s;
+}
+.leave-span-2{
+    transition: left 0.5s ease-in 0s, color 0.5s ease-out 0s;
+}
+.leave-span-3{
+    transition: left 0.5s ease-in 0s, color 0.5s ease-out 0s;
+}
+.leave:hover .leave-span-1{
+    left: -5px;
+    color: black;
+    transition: left 0.25s ease-in 0s, color 0.5s ease-out 0s;
+}
+
+.leave:hover .leave-span-2{
+    left: -5px;
+    color: black;
+    transition: left 0.25s ease-in 0.5s, color 0.5s ease-out 0.15s;
+}
+.leave:hover .leave-span-3{
+    left: -5px;
+    color: black;
+    transition: left 0.25s ease-in 0.75s, color 0.5s ease-out 0.5s;
+}
+.modal{
+    display: none; 
+	position: fixed;
+	z-index: 100;
+	left: 0;
+	top: 0;
+	margin:-50px;
+	width: 110%;
+	height: 110%;
+	overflow: auto;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+}
+.modal-content{
+	background-color: #fefefe;
+	color:#141E30;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: fit-content;
+	height: fit-content;
+}
+.vote-group {
+    background-color: transparent;
+    display: block;
+    margin: 10px 0;
+    position: relative;
+}
+.vote-group label {
+      padding: 12px 30px;
+      width: 100%;
+      display: block;
+      text-align: left;
+      color: #a8b0b6;
+      cursor: pointer;
+      background: transparent;
+      position: relative;
+      z-index: 2;
+      transition: color 200ms ease-in;
+      overflow: hidden;
+}
+.vote-group label:before {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        content: '';
+        background-color: transparent;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale3d(56, 56, 1);
+        transition: all 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+        opacity: 1;
+        z-index: -1;
+      }
+
+.vote-group input:checked ~ label {
+      color: #fff;
+}
+.vote-group input:checked ~ label:before {
+        transform: translate(-50%, -50%) scale3d(56, 56, 1);
+        background-color: #222e41;
+        opacity: 1;
+      }
+
+.vote-group input {
+      width: 32px;
+      height: 32px;
+      order: 1;
+      z-index: 2;
+      position: absolute;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      visibility: hidden;
+    }
+
+@media screen and (max-width: 800px) {
+    #chat-button {
+        display: flex;
+    }
+    #chat-box-modal {
+        display: none;
+        position: fixed;
+        z-index: 100;
+        left: 0;
+        top: 0;
+        margin: -50px;
+        width: 110%;
+        height: 110%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+    #chat-box-content {
+        z-index: 35;
+        background-color: #fefefe;
+        width: auto;
+        height: 85vh;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        border-radius: 10px;
+        padding: 20px;
+        border: 1px solid #888;
+    }
+    #chat-box-close {
+        display: block;
+        position: relative;
+        text-align: right;
+        margin-right: 10px;
+    }
+    .game-left{
+        width: 96vw;
+    }
+}
