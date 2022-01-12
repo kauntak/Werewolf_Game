@@ -83,6 +83,10 @@ var rolesCount = {
  * TODO: SETTINGS: Set whether first round is day or night
  * TODO: SETTINGS: If first round is night werewolf attack or not
  * TODO: SETTINGS: If first round is night is there is a prophecy or not, OR one random villager will know one random other villager
+ * TODO: SETTINGS: Vote view style: Don't see other player's votes, see others' votes, see others' votes AND names
+ * TODO: SETTINGS: Evening Vote tie breaker: no hanging, re-vote on tied players, select random
+ * TODO: Lobby, japanese rooms not updating
+ * TODO: Game end, return to lobby, intead of room selection
  */
 
 const roundTypes = ["day", "evening", "night"];
