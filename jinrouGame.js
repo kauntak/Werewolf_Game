@@ -76,6 +76,15 @@ var rolesCount = {
         shaman: 1,
     },
 };
+
+/**
+ * TODO: SETTINGS: Change discussion time
+ * TODO: SETTINGS: change role counts
+ * TODO: SETTINGS: Set whether first round is day or night
+ * TODO: SETTINGS: If first round is night werewolf attack or not
+ * TODO: SETTINGS: If first round is night is there is a prophecy or not, OR one random villager will know one random other villager
+ */
+
 const roundTypes = ["day", "evening", "night"];
 const voteTime = 20;
 
