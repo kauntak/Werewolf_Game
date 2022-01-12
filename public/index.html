@@ -22,14 +22,103 @@
         <li><a href="#" class="ja-list" onclick="selectLang(event, 'ja')">日本語</a></li>
       </ul>
     </div>
-    
+    <div id="help">
+      <div id="help-modal" class="modal">
+        <div class="modal-content">
+          <span id="help-close" class="close">&times;</span>
+          <div class="language en">
+            <div class="help-content">
+              <h4>Rules</h4>
+              <p>There are two side: Villager side, and Werewolf side.</p>
+              <p>The Villager side wins if all the werewolves are killed.</p>
+              <p>The Werewolf side wins if the number of villagers are equal or less than werewolf side.</p>
+              
+              <h5>Flow of the game.</h5>
+              <p>The game is split into different rounds, and will keep cycling through until one side wins.</p>
+              
+              <h6>Day</h6>
+              <p>At the beginning of the day everyone is informed if there were any werewolf attacks the previous night.</p>
+              <p>During the day everyone in the village will discuss and try to deduce who the werewolf is.</p>
+              <p>If you are on the werewolf side you will try to deceive the villagers.</p>
+              <h6>Evening</h6>
+              <p>Everyone will vote on one person to hang.</p>
+              <p>If there is a tie, the one person to be hanged will be chosen between the tied players at random.</p>
+              <p> The person who is hanged can not join into future discussions.</p>
+              <h6>Night</h6>
+              <p>During the night each role will use their powers(if they have any).</p>
+              
+              <h5>Roles</h5>
+              <p>Each player has a role: Villager, Werewolf, prophet, knight, traitor, or shaman.</p>
+              <h6>Villager</h6>
+              <p>Has no special powers. Villagers will try to deduce who the werewolf/werewolves is/are.</p>
+              <h6>Werewolf</h6>
+              <p>Will kill one villager each night. Try to deceive villagers, to avoid being hanged.</p>
+              <p>Will vote at night on who to kill. In case of a tie, the person to be killed will be chosen between the tied people at random.</p>
+              <p>Each werewolf knows who all the other werewolves are.</p>
+              <h6>Prophet</h6>
+              <p>During the night the prophet can choose one player and prophesize whether that player is a werewolf or human.</p>
+              <h6>Knight</h6>
+              <p>During the night the knight will choose one person to protect. If the knight chooses the person who is attacked by the werewolf that person survives the night.</p>
+              <p>The knight can NOT choose the same person twice, and can not protect themselves.</p>
+              <h6>Traitor</h6>
+              <p>The traitor is a human, and has no special power. The traitor's goal is for the werewolf side to win.</p>
+              <p>Once the traitor is attacked by the werewolf side at night, they can join in on the werewolf attacks, and will know who is on the werewolf side.</p>
+              <p>When prophesized/summoned by a shaman they will show up as human.</p>
+              <h6>Shaman</h6>
+              <p>The shaman is able to find out whether the person who was last hanged was a Werewolf or a human.</p>
+            </div>
+          </div>
+          <div class="language ja">
+            <div class="help-content">
+              <h4>ルール</h4>
+              <p>２チームあります：村人側と人狼側</p>
+              <p>人狼をすべて処刑したら村人側の勝ち。</p>
+              <p>人狼の数と人間の数が同数になったら人狼側の勝ち。</p>
+              
+              <h5>ゲームの流れ</h5>
+              <p>ゲームは昼の時間、夕方の時間、夜の時間に分かれています</p>
+              
+              <h6>昼の時間</h6>
+              <p>一日の初めに前の夜に人狼に誰か殺されたかが判明されます。</p>
+              <p>昼間の間は誰が人狼かを探し出すための議論を行う時間。</p>
+              <p>人狼はもちろん村人側を騙し処刑されないように会議で話を進めましょう。</p>
+              <h6>夕方の時間</h6>
+              <p>誰を処刑するかを投票し、最も投票が多い人を処刑。引き分けの場合は引き分けしている者の中からランダムで選ばれます。</p>
+              <h6>夜の時間</h6>
+              <p>夜の間に役職の力を発揮させます。</p>
+              
+              <h5>役職</h5>
+              <p>役職は６個：村人、人狼、預言者、騎士、裏切者、霊媒師</p>
+              <h6>村人</h6>
+              <p>特別な能力はなく、人狼を誰かをあぶりだそうとする。</p>
+              <h6>人狼</h6>
+              <p>夜の時間に投票で一人を殺す。引き分けの場合は引き分けしている者の中からランダムで選ばれます。</p>
+              <p>人狼は他の人狼が誰か知っています。</p>
+              <h6>預言者</h6>
+              <p>夜の時間に誰か一人を占ってその人が人間か人狼かを占える。</p>
+              <h6>騎士</h6>
+              <p>夜の時間に一人守る事が出来る。もし守っている者が人狼に狙われたら、その人は死にません。</p>
+              <p>騎士は連続で同じ人を守れません。騎士は自分を守れません。</p>
+              <h6>裏切者</h6>
+              <p>裏切者は人間でありながら人狼側です。特別の力はありません。</p>
+              <p>人狼に狙われたら、夜の時間に誰を狙うか人狼と決めることができるようになり、人狼が誰なのか知れます。</p>
+              <p>預言や霊媒されても人間とでます。</p>
+              <h6>霊媒師</h6>
+              <p>霊媒師は夕方の時間に処刑された人が人狼か人間かしれます。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     
     <div id="welcome" class="panel">
       <div class="language en">
         <h3>Welcome to the werewolf game!</h3>
-        <p>Deep in the woods, in a little village, an evil witch has released a curse that will turn anyone who comes into contact with it into a werewolf.</p>
-        <p>At night the werewolf will feel a deep hunger for the blood of the people closest to them, which will not wane until one person has been eaten.</p>
-        <p>Every night one villager has been eaten. Fed up and scared the villagers decide to start hanging the most suspicious among them each day, until they had gotten rid of the werewolf....</p>
+        <div class="intro">
+          <p>Deep in the woods, in a little village, an evil witch has released a curse that will turn anyone who comes into contact with it into a werewolf.</p>
+          <p>At night the werewolf will feel a deep hunger for the blood of the people closest to them, which will not wane until one person has been eaten.</p>
+          <p>Every night one villager has been eaten. Fed up and scared the villagers decide to start hanging the most suspicious among them each day, until they had gotten rid of the werewolf....</p>
+        </div>
         <form action="submit" class="welcome-form" id="welcome-form-en">
           <label for="username">What's  your name?</label>
           <input type="text" name="username" required>
@@ -39,10 +128,12 @@
       </div>
       <div class="language ja">
         <h3>人狼ゲームへようこそ！！</h3>
-        <p>森の奥深く、小さな村で、邪悪な魔女が呪いを解き放ちました。</p>
-        <p>呪われた村人は夜になると、親しんでいる人の血を欲し、食い殺さなければ死んでしまう体になってしまいました。</p>
-        <p>毎晩毎晩村人が一人ずつ食い殺されて、村人たちは決意しました。</p>
-        <p>人狼を捕まえるまで毎日最も怪しい人を処刑する事を。。。</p>
+        <div class="intro">
+          <p>森の奥深く、小さな村で、邪悪な魔女が呪いを解き放ちました。</p>
+          <p>呪われた村人は夜になると、親しんでいる人の血を欲し、食い殺さなければ死んでしまう体になってしまいました。</p>
+          <p>毎晩毎晩村人が一人ずつ食い殺されて、村人たちは決意しました。</p>
+          <p>人狼を捕まえるまで毎日最も怪しい人を処刑する事を。。。</p>
+        </div>
         <form action="submit" class="welcome-form" id="welcome-form-ja">
           <label for="username">お名前はなんですか？?</label>
           <input type="text" name="username" required>
@@ -60,7 +151,7 @@
           </div>
           <div class="select-room">
             <h3>Please select a room to join!</h3>
-            <form action="submit" id="room-selection-form-en">
+            <form action="submit" id="room-selection-form-en" class="room-selection-form">
               <div class="room-list-content" id="room-list-content-en">
                   <!-- Dynamically create radio buttons here   -->
               </div>
@@ -68,7 +159,7 @@
                 <label for="room-password-en">Password:</label>
                 <input type="text" name="room-password-en" id="room-password-en">
               </div>
-              <input type="submit" value="Join room!" id="select-room-en" disabled>
+              <input type="submit" value="Join room!" id="select-room-en">
             </form>
           </div>
           <div class="create-room">
@@ -99,7 +190,7 @@
         </div>
         <div class="select-room">
           <h3>接続する部屋を選んでください!</h3>
-          <form action="submit" id="room-selection-form-ja">
+          <form action="submit" id="room-selection-form-ja" class="room-selection-form">
             <div class="room-list-content" id="room-list-content-ja">
                 <!-- Dynamically create radio buttons here   -->
             </div>
@@ -107,7 +198,7 @@
               <label for="room-password-ja">合言葉:</label>
               <input type="text" name="room-password-ja" id="room-password-ja">
             </div>
-            <input type="submit" value="部屋に入る!" id="select-room-ja" disabled>
+            <input type="submit" value="部屋に入る!" id="select-room-ja">
           </form>
         </div>
         <div class="create-room">
@@ -135,7 +226,7 @@
     <div id="chat-box">
       <div id="chat-box-modal">
         <div id="chat-box-content">
-          <span id="chat-box-close">&times;</span>
+          <span id="chat-box-close" class="close">&times;</span>
           <ul id="messages">
           </ul>
           <div class="message-send-form">
@@ -146,15 +237,18 @@
           </div>
         </div>
       </div>
-      <button id="chat-button" onclick="openChat()">
+      <button id="chat-button" class="button" onclick="openChat()">
         <img src="./images/chatIcon.png" alt="Chat Icon" id="chat-icon">
       </button>
     </div>
     <div class="modal" id="leave-lobby-modal">
-      <div class="modal-content">
+      <div class="leave-content modal-content">
         <p class="language en">Do you really want to leave?</p>
         <p class="language ja" style="display:none;">本当に部屋を出ますか？</p>
-        <button type="button" onclick="leaveLobby()" class="leave-ok-button"><i class="fas fa-check"></i></button><button onclick="cancelLeaveLobby()"><i class="fas fa-times"></i></button>
+        <div class="leave-confirm-buttons">
+          <button type="button" onclick="leaveLobby()" class="leave-ok-button button"><i class="fas fa-check"></i></button>
+          <button onclick="cancelLeaveLobby()" class="button"><i class="fas fa-times"></i></button>
+        </div>
       </div>
     </div>
     <div id="game-lobby" class="panel">
@@ -166,72 +260,103 @@
           <div class="current-players">
             <h5># of players:</h5><h5 id="number-of-players-en">0</h5>
           </div>
-          <button type="button" class="start-button" id="start-button-en" onclick="startGame()">Start!</button>
+          <button type="button" class="start-button button" id="start-button-en" onclick="startGame()" style="display:none;">Start!</button>
         </div>
         <div class="language ja">
           <div class="current-players">
             <h5>村人:</h5><h5 id="number-of-players-ja">0</h5>
           </div>
-          <button type="button" class="start-button" id="start-button-ja" onclick="startGame()">始める!</button>
+          <button type="button" class="start-button button" id="start-button-ja" onclick="startGame()" style="display:none;">始める!</button>
         </div>
       </div>
       <div class="game-left houses" id="house-list">
-        <div class="house" id="house1" style="position: absolute;left: 0;top: 5vh;">
+        <div class="house" id="house1" style="position: absolute;left: 0;top: 5vh;z-index: 6;">
           <span class="house-window"></span><span class="house-window-side"></span><img src="./images/house.png" alt="villager house" class="house-image">
         </div>
-        <div class="house" style="position: absolute;left: 13vw;top: 0;display: none;" id="house6">
+        <div class="house" style="position: absolute;left: 13vw;top: 0;display: none;z-index: 5;" id="house6">
           <span class="house-window"></span><span class="house-window-side"></span><img src="./images/house.png" alt="villager house" class="house-image">
         </div>
-        <div class="house" style="position: absolute;left: -10vw;top: 25vh;display: none;" id="house5">
+        <div class="house" style="position: absolute;left: -10vw;top: 25vh;display: none;z-index: 7;" id="house5">
           <span class="house-window"></span><span class="house-window-side"></span><img src="./images/house.png" alt="villager house" class="house-image">
         </div>
-        <div class="house" style="position: absolute;left: -5vw;top: 50vh;" id="house2">
+        <div class="house" style="position: absolute;left: -5vw;top: 50vh;z-index: 8;" id="house2">
           <span class="house-window"></span><span class="house-window-side"></span><img src="./images/house.png" alt="villager house" class="house-image">
         </div>
-        <div class="house" style="position: absolute;right: 5vw;top: 50vh;" id="house3">
+        <div class="house" style="position: absolute;right: 5vw;top: 50vh;z-index: 8;" id="house3">
           <span class="house-window"></span><span class="house-window-side"></span><img src="./images/house.png" alt="villager house" class="house-image">
         </div>
-        <div class="house" style="position: absolute;right: 0vw;top: 30vh;display: none;" id="house7">
+        <div class="house" style="position: absolute;right: 0vw;top: 30vh;display: none;z-index: 7;" id="house7">
           <span class="house-window"></span><span class="house-window-side"></span><img src="./images/house.png" alt="villager house" class="house-image">
         </div>
-        <div class="house" style="position: absolute;right: 5vw;top: 13vh;" id="house4">
+        <div class="house" style="position: absolute;right: 5vw;top: 13vh;z-index: 6;" id="house4">
           <span class="house-window"></span><span class="house-window-side"></span><img src="./images/house.png" alt="villager house" class="house-image">
         </div>
-        <div class="house" id="house8" style="position: absolute;right: 19vw;top: 61vh;display: none;">
+        <div class="house" id="house8" style="position: absolute;right: 19vw;top: 61vh;display: none;z-index: 9;">
           <span class="house-window"></span><span class="house-window-side"></span><img src="./images/house.png" alt="villager house" class="house-image">
         </div>
       </div>
     </div>
-    
-    <div class="modal">
-      <div class="modal-content">
+    <div id="claw-marks-container">
+      <img src="./images/claws.png" alt="claw marks" id="claw-marks">
+    </div>
+    <div class="modal" id="leave-game-modal">
+      <div class="leave-content modal-content">
         <p>Do you really want to leave?</p>
-        <button onclick="leaveGame()" class="leave-ok-button">Yes</button><button onclick="cancelLeaveGame()">No</button>
+        <div class="leave-confirm-buttons">
+          <button onclick="leaveGame()" class="leave-ok-button button"><i class="fas fa-check"></i></button>
+          <button onclick="cancelLeaveGame()" class="button"><i class="fas fa-times"></i></button>
+        </div>
       </div>
     </div>
     <div id="game" class="panel">
       <div id ="game-content" class="game-left">
-        <!-- <button class="leave" type="button" onclick="leaveGameQuestion()">
+        <button class="leave" type="button" onclick="leaveGameQuestion()" id="leave-game-button">
           <span class="leave-span-1">&lt;</span><span class="leave-span-2">&lt;</span><span class="leave-span-3">&lt;</span>
-        </button> -->
+        </button>
         <div class="role-image" id="role-image">
           <img src="./images/werewolf.png" alt="werewolf card">
         </div>
-        <p id="count-down">0:10</p>
-        <div class="language en">
-            <div class="role-content">
-                <div class="vote-content">
-                    <h5 id="vote-title">Vote Title</h5>
-                    <form id="vote-form">
-                      <div class="vote-options-container">
-
-                      </div>
-                    </form>
-                </div>
-            </div>
+        <div class="role-content">
+          <h5>Team Members</h5>
+          <div id="team-members">
+            <!-- Dynamically created team members list -->
+          </div>
+          <h5>All Players</h5>
+          <div id="players-list">
+            <!-- Dynamically created player list -->
+          </div>
+          <div class="vote-content">
+            <form id="vote-form">
+              <div class="language en">
+                <h5 id="vote-title-en" class="vote-title"></h5>
+                <input type="button" value="Vote" class="vote-button" id="vote-en" onclick="voteButtonClicked()">
+              </div>
+              <div class="language ja">
+                <h5 id="vote-title-ja" class="vote-title">誰を選ぶ？</h5>
+                <input type="button" value="評決する" class="vote-button" id="vote-ja" onclick="voteButtonClicked()">
+              </div>
+              <p id="count-down"></p>
+              <div id="vote-options-container">
+                <!-- Dynamically created vote options go here   -->
+                <!-- <div class="vote-group">
+                  <input id="vote-1" name="radio-vote" type="radio" class="radio-vote" required="">
+                  <label for="vote-1" id="vote-label-1">Name 1</label>
+                </div> 
+                <div class="vote-group">
+                  <input id="vote-2" name="radio-vote" type="radio" class="radio-vote" required="">
+                  <label for="vote-2" id="vote-label-2">Name 2</label>
+                </div>  -->
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
+    <div class="button-container">
+      <button id="help-button" class="button" onclick="openHelp()">?</button>
+      <button id="mute-button" class="button" onclick="mute()"><i class="fas fa-volume-up"></i></button>
+    </div>
+    <audio src="" id="round-audio"></audio>
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
     <script type="text/javascript" src="./scripts/index.js"></script>
