@@ -6,6 +6,9 @@ module.exports = {
     checkIfFinished,
 };
 
+let room = require('./rooms');
+let user = require('')
+
 var rolesCount = {
     4: { werewolf: 1, villager: 2, prophet: 1 },
     5: { werewolf: 1, villager: 2, prophet: 1, traitor: 1 },

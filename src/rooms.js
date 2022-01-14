@@ -21,7 +21,26 @@ module.exports = {
 };
 
 let rooms = [];
+function Room({roomName, user, password}){
+    this.id = getUUID();
+    this.status = "created";
+    this.roomName = roomName;
+    this.password = password;
+    this.users = [user];
+    this.currentRound = null;
+    this.lastHanged = null;
+};
 
+function User(socketId){
+    this.id = getUUID();
+    this.socketId = socketId;
+    this.role = null;
+    this.room = null;
+}
+
+function getUUID(){
+        return Crypto.randomUUID();
+    }
 function setRole(roomName, id, role) {
     const roomIndex = getRoomIndex(roomName);
     if (roomIndex == -1) return;
