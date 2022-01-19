@@ -4,7 +4,7 @@ const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 const rooms = require("./rooms");
 const jinrou = require("./jinrouGame");
-const port = process.env.port || 3000;
+const port = process.env.port || 8080;
 
 // app.use(express.static(__dirname + "/public"));
 
