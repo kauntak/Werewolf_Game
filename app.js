@@ -4,7 +4,8 @@ const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 const rooms = require("./rooms");
 const jinrou = require("./jinrouGame");
-const { kill } = require("process");
+const port = process.env.port || 3000;
+
 app.use(express.static(__dirname + "/public"));
 
 app.get("/", (req, res) => {
@@ -257,8 +258,8 @@ io.on("connection", (socket) => {
     });
 });
 
-http.listen(process.env.port || 3000, () => {
-    console.log("Server started");
+http.listen(port, () => {
+    console.log("Server started on port:", port);
 });
 
 function getConnectionIndex(id) {
